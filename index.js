@@ -13,7 +13,7 @@ function delay(time) {
   await page.goto(
     "https://console.aws.amazon.com/iamv2/home?#/security_credentials"
   );
-  await page.setViewport({ width: 768, height: 1080 });
+  await page.setViewport({ width: 1080, height: 1920 });
 
   const email = {
     input: ".aws-signin-textfield",
@@ -40,6 +40,17 @@ function delay(time) {
   // click next
   await page.waitForSelector(password.button);
   await page.click(password.button);
+
+  const menu = {
+    dropdown: '[aria-controls="menu--account"]',
+    link: '[data-testid="aws-security-credentials"]',
+  };
+
+  await page.waitForSelector(menu.dropdown);
+  await page.click(menu.dropdown);
+
+  await page.waitForSelector(menu.link);
+  await page.click(menu.link);
 
   const accessKey = {
     button: 'button[data-testid="create-access-key"]',
@@ -81,4 +92,6 @@ function delay(time) {
   }, getKeys);
 
   console.log(keys);
+
+  await browser.close();
 })();
