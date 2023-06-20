@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
-const user = "kanbei0605@gmail.com";
-const pass = "Password)^)%1";
+const user = "example@gmail.com";
+const pass = "password";
 
 function delay(time) {
   return new Promise((resolve) => {
